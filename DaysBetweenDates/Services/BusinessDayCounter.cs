@@ -9,7 +9,7 @@ namespace DaysBetweenDates.Services
 {
     public class BusinessDayCounter : IBusinessDayCounter
     {
-        private const int WEEK_MODULO_OPERATOR = 7;
+        private const int WEEK_MODULO_OPERATOR = 6;
         private const int SUBSTITUTE_HOL_DAY_THRESHOLD = 2;
 
         public int WeekdaysBetweenTwoDates(DateTime firstDate, DateTime secondDate)
@@ -19,7 +19,7 @@ namespace DaysBetweenDates.Services
 
             var days = 0;
 
-            for (DateTime tempDate = secondDate.Date.AddDays(-1); tempDate > firstDate; tempDate.AddDays(-1))
+            for (DateTime tempDate = secondDate.Date.AddDays(-1); tempDate > firstDate; tempDate = tempDate.AddDays(-1))
             {
                 if (IsWeekday(tempDate))
                     days++;
@@ -35,7 +35,7 @@ namespace DaysBetweenDates.Services
 
             var days = 0;
 
-            for (DateTime tempDate = secondDate.Date.AddDays(-1); tempDate > firstDate; tempDate.AddDays(-1))
+            for (DateTime tempDate = secondDate.Date.AddDays(-1); tempDate > firstDate; tempDate = tempDate.AddDays(-1))
             {
                 if (IsWeekday(tempDate) && !publicHolidays.Where(x => x.Date == tempDate.Date).Any())
                     days++;
@@ -51,7 +51,7 @@ namespace DaysBetweenDates.Services
 
             var days = 0;
 
-            for (DateTime tempDate = secondDate.Date.AddDays(-1); tempDate > firstDate; tempDate.AddDays(-1))
+            for (DateTime tempDate = secondDate.Date.AddDays(-1); tempDate > firstDate; tempDate = tempDate.AddDays(-1))
             {
                 if (IsWeekday(tempDate) && !publicHolidays.Any(x => IsPublicHoliday(x, tempDate)))
                     days++;
@@ -61,8 +61,8 @@ namespace DaysBetweenDates.Services
 
         private bool IsWeekday(DateTime date)
         {
-            // If sat(7) or sun(0), modulo will be zero, therefore weekend
-            return (date.Day + WEEK_MODULO_OPERATOR) % WEEK_MODULO_OPERATOR > 0;
+            // If sat(6) or sun(0), modulo will be zero, therefore weekend
+            return ((int)date.DayOfWeek + WEEK_MODULO_OPERATOR) % WEEK_MODULO_OPERATOR > 0;
         }
 
         private bool IsPublicHoliday(PublicHoliday publicHoliday, DateTime date)
