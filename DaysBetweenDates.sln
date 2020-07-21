@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29911.84
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DaysBetweenDates", "DaysBetweenDates\DaysBetweenDates.csproj", "{F3E1BDD6-974C-43D8-9CB9-0AD9E6190D7E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DaysBetweenDatesTests", "DaysBetweenDatesTests\DaysBetweenDatesTests.csproj", "{2A0AD30A-5695-4856-A4CC-7C83C57FADAE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F3E1BDD6-974C-43D8-9CB9-0AD9E6190D7E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F3E1BDD6-974C-43D8-9CB9-0AD9E6190D7E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F3E1BDD6-974C-43D8-9CB9-0AD9E6190D7E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F3E1BDD6-974C-43D8-9CB9-0AD9E6190D7E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2A0AD30A-5695-4856-A4CC-7C83C57FADAE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2A0AD30A-5695-4856-A4CC-7C83C57FADAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2A0AD30A-5695-4856-A4CC-7C83C57FADAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2A0AD30A-5695-4856-A4CC-7C83C57FADAE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B9BB2AA9-C9FE-420A-B5B0-698EEE042717}
+	EndGlobalSection
+EndGlobal
