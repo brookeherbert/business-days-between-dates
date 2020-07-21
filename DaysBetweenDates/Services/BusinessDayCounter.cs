@@ -50,12 +50,21 @@ namespace DaysBetweenDates.Services
                 return 0;
 
             var days = 0;
+            var publicHolidaysTaken = new List<PublicHoliday>();
 
             for (DateTime tempDate = secondDate.Date.AddDays(-1); tempDate > firstDate; tempDate = tempDate.AddDays(-1))
             {
-                if (IsWeekday(tempDate) && !publicHolidays.Any(x => IsPublicHoliday(x, tempDate)))
+                if (IsWeekday(tempDate))
                     days++;
+
+                publicHolidays.ToList().ForEach(x => {
+                    if (IsPublicHoliday(x, tempDate) || IsSubstituteHoliday(x, tempDate))
+                        publicHolidaysTaken.Add(x);
+                });
             }
+
+            days -= publicHolidaysTaken.GroupBy(x => x.HolidayName).Select(y => y.First()).Count();
+
             return days;
         }
 
@@ -69,9 +78,9 @@ namespace DaysBetweenDates.Services
         {
             return publicHoliday.Month == date.Month &&
                 ((publicHoliday.FixedDate && publicHoliday.DayInMonth == date.Day) ||
-                    (publicHoliday.VariableDayInMonth.DayOfWeek == (int)date.DayOfWeek &&
-                       publicHoliday.VariableDayInMonth.WeekOfMonth == DateTimeHelper.GetWeekNumberOfMonth(date)) ||
-                     IsSubstituteHoliday(publicHoliday, date));
+                    (publicHoliday.VariableDayInMonth != null && 
+                       publicHoliday.VariableDayInMonth.DayOfWeek == (int)date.DayOfWeek &&
+                       publicHoliday.VariableDayInMonth.WeekOfMonth == DateTimeHelper.GetWeekNumberOfMonth(date)));
         }
 
         private bool IsSubstituteHoliday(PublicHoliday publicHoliday, DateTime date)
@@ -82,9 +91,9 @@ namespace DaysBetweenDates.Services
             var publicHolidayDate = new DateTime(date.Year, publicHoliday.Month, publicHoliday.DayInMonth.Value);
 
             return publicHoliday.SubstituteHoliday &&
-                (publicHolidayDate.DayOfWeek == DayOfWeek.Saturday || publicHolidayDate.DayOfWeek == DayOfWeek.Sunday) &&
-                (date - publicHolidayDate).TotalDays < SUBSTITUTE_HOL_DAY_THRESHOLD &&
+                !IsWeekday(publicHolidayDate) &&
+                (date - publicHolidayDate).TotalDays <= SUBSTITUTE_HOL_DAY_THRESHOLD &&
                 date.DayOfWeek == DayOfWeek.Monday;
         }
-    }
+    } 
 }
