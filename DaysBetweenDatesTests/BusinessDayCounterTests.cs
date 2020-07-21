@@ -128,7 +128,7 @@ namespace DaysBetweenDatesTests
         }
 
         [Test]
-        public void BusinessDaysBetweenTwoDatesComplexReturnsCorrectNumDays()
+        public void BusinessDaysBetweenTwoDatesSubstitutionHolReturnsCorrectNumDays()
         {
             //Arrange
             var expected = 1;
@@ -143,7 +143,7 @@ namespace DaysBetweenDatesTests
         }
 
         [Test]
-        public void BusinessDaysBetweenTwoDatesComplexReturnsCorrectNumDays2()
+        public void BusinessDaysBetweenTwoDatesChristmasReturnsCorrectNumDays()
         {
             //Arrange
             var expected = 2;
@@ -158,7 +158,7 @@ namespace DaysBetweenDatesTests
         }
 
         [Test]
-        public void BusinessDaysBetweenTwoDatesComplexReturnsCorrectNumDays3()
+        public void BusinessDaysBetweenTwoDatesQueensBdayReturnsCorrectNumDays()
         {
             //Arrange
             var expected = 18;
